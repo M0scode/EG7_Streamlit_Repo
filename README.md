@@ -1,14 +1,12 @@
-##### **Please note**: Download the repository as a zipped folder, create a private repository, and upload the content to it. This way, you can collaborate with your teammates effectively.
+## Classification_Project_EG7
 
-## 2401FTDS_Classification_Project
-
-# Analysing News Articles Dataset
+# Building Classification Models for a News Classfier App
 
 
 ![](https://img.shields.io/badge/Python-3776AB.svg?style=for-the-badge&logo=Python&logoColor=white) [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](URL_TO_YOUR_APP)
 
 <div id="main image" align="center">
-  <img src="https://github.com/ereshia/2401FTDS_Classification_Project/blob/main/announcement-article-articles-copy-coverage.jpg" width="550" height="300" alt=""/>
+  <img src="https://scholarace.com/wp-content/uploads/2018/12/Newspaer-with-cup-of-tea.jpeg" width="550" height="300" alt=""/>
 </div>
 
 ## Table of contents
@@ -22,8 +20,8 @@
 
 ## 1. Project Overview <a class="anchor" id="project-description"></a>
 
-Your team has been hired as data science consultants for a news outlet to create classification models using Python and deploy it as a web application with Streamlit. 
-The aim is to provide you with a hands-on demonstration of applying machine learning techniques to natural language processing tasks.  This end-to-end project encompasses the entire workflow, including data loading, preprocessing, model training, evaluation, and final deployment. The primary stakeholders for the news classification project for the news outlet could include the editorial team, IT/tech support, management, readers, etc. These groups are interested in improved content categorization, operational efficiency, and enhanced user experience.
+Our team has been hired as data science consultants for a news outlet to create classification models using Python and deploy it as a web application with Streamlit. 
+This end-to-end project encompasses the entire workflow, including data loading, preprocessing, model training, evaluation, and final deployment. The primary stakeholders for the news classification project for the news outlet could include the editorial team, IT/tech support, management, readers, etc. These groups are interested in improved content categorization, operational efficiency, and enhanced user experience.
 
 
 ## 2. Dataset <a class="anchor" id="dataset"></a>
@@ -47,7 +45,7 @@ To carry out all the objectives for this repo, the following necessary dependenc
 
 ## 4. Environment <a class="anchor" id="environment"></a>
 
-It's highly recommended to use a virtual environment for your projects, there are many ways to do this; we've outlined one such method below. Make sure to regularly update this section. This way, anyone who clones your repository will know exactly what steps to follow to prepare the necessary environment. The instructions provided here should enable a person to clone your repo and quickly get started.
+It's highly recommended to use a virtual environment for projects, there are many ways to do this; we've outlined one such method below. Make sure to regularly update this section. This way, anyone who clones your repository will know exactly what steps to follow to prepare the necessary environment. The instructions provided here should enable a person to clone your repo and quickly get started.
 
 ### Create the new evironment - you only need to do this once
 
@@ -137,9 +135,9 @@ Congratulations! You've now officially deployed your first web application!
 
 | Name                                                                                        |  Email              
 |---------------------------------------------------------------------------------------------|--------------------             
-| [Marc Marais](https://github.com/marcmarais)                                                | mmarais@sandtech.com
-| [James Beta](https://github.com/James-Beta)                                                                                  | jbeta@sandtech.com
-| [Oladare Adekunle](https://github.com/DareSandtech)                                                                            | oadekunle@sandtech.com
-| [Ereshia Gabier](https://github.com/ereshia)                                                | egabier@sandtech.com
-| [Annegret Muller](https://github.com/AnnegretExplore)                                       | amuller@sandtech.com
-| [Zintle Faltein-Maqubela](https://github.com/ZintleFaltein)                                                                   | zfaltein-maqubela@sandtech.com
+| [Veronicah Sihlangu](https://github.com/sihlangu01)                                                | veronicahsihlangu@gmail.com
+| [Rofhiwa Ramphele](https://github.com/RofhiwaRamps23)                                                                                  | ramphelerm@gmail.com
+| [Keneilwe Madihlaba](https://github.com/madihlabakeneilwe)                                                                            | keneilwemadihlaba@gmail.com
+| [Thabisile Xaba](https://github.com/Thabi98)                                                | thabisilesam.xaba@gmail.com
+| [Nomfundo Sithole](https://github.com/NomfundoJobe)                                       | nomfundomondise@gmail.com
+| [Sandiso Magwaza](https://github.com/M0scode)                                                                   | khayelihlesandiso@gmail.com

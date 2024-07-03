@@ -1,26 +1,25 @@
 """
+Simple Streamlit webserver application for serving developed classification models.
 
-    Simple Streamlit webserver application for serving developed classification
-	models.
+Author: ExploreAI Academy.
 
-    Author: ExploreAI Academy.
+Note:
+---------------------------------------------------------------------
+Please follow the instructions provided within the README.md file
+located within this directory for guidance on how to use this script
+correctly.
+---------------------------------------------------------------------
 
-    Note:
-    ---------------------------------------------------------------------
-    Please follow the instructions provided within the README.md file
-    located within this directory for guidance on how to use this script
-    correctly.
-    ---------------------------------------------------------------------
+Description: This file is used to launch a minimal Streamlit web
+application. You are expected to extend the functionality of this script
+as part of your predict project.
 
-    Description: This file is used to launch a minimal streamlit web
-	application. You are expected to extend the functionality of this script
-	as part of your predict project.
+For further help with the Streamlit framework, see:
 
-	For further help with the Streamlit framework, see:
-
-	https://docs.streamlit.io/en/latest/
+https://docs.streamlit.io/en/latest/
 
 """
+
 # Importing necessary libraries
 import streamlit as st
 import joblib
@@ -28,18 +27,51 @@ import os
 import pandas as pd
 
 # Load your vectorizer from the pkl file
-vectorizer_path = r"C:\Users\thabi\Downloads\streamlit\EG7_Streamlit_Repo\models\tfidfvect.pkl"
-with open(vectorizer_path, "rb") as vec_file:
-    news_vectorizer = joblib.load(vec_file)
+#vectorizer_path = r"C:\Users\thabi\Downloads\streamlit\EG7_Streamlit_Repo\models\tfidfvect.pkl"
+#data_path = r"C:\Users\thabi\Downloads\streamlit\EG7_Streamlit_Repo\train.csv"
+model_path = r"C:\Users\thabi\Downloads\streamlit\EG7_Streamlit_Repo\models\Logistic_regression.pkl"
 
-# Load your raw data
-data_path = r"C:\Users\thabi\Downloads\streamlit\EG7_Streamlit_Repo\train.csv"
-raw_data = pd.read_csv(data_path)
+model_options = {
+    "Random Forest": os.path.join(os.path.dirname(__file__), 'models', 'forest_model.pkl'),
+    "Logistic Regression": os.path.join(os.path.dirname(__file__), 'models', 'logistic_regression.pkl'),
+    "Tfidfvect": os.path.join(os.path.dirname(__file__), 'models', 'tfidfvect.pkl')
+}
+
+# Function to load the vectorizer
+def load_vectorizer(path):
+    try:
+        with open(path, "rb") as vec_file:
+            return joblib.load(vec_file)
+    except FileNotFoundError:
+        st.error(f"Vectorizer file not found at {path}. Please check the path.")
+        return None
+
+# Function to load the raw data
+def load_data(path):
+    try:
+        return pd.read_csv(path)
+    except FileNotFoundError:
+        st.error(f"Data file not found at {path}. Please check the path.")
+        return None
+
+# Function to load the model
+def load_model(path):
+    try:
+        with open(path, "rb") as model_file:
+            return joblib.load(model_file)
+    except FileNotFoundError:
+        st.error(f"Model file not found at {path}. Please check the path.")
+        return None
+
+#news_vectorizer = load_vectorizer(vectorizer_path)
+#raw_data = load_data(data_path)
 
 def main():
     """News Classifier App with Streamlit"""
 
-    # Main title and subheader with logo
+    #if news_vectorizer is None or raw_data is None:
+        #return
+
     st.markdown("""
         <style>
             .container {
@@ -69,30 +101,24 @@ def main():
         </div>
     """, unsafe_allow_html=True)
 
-    # Sidebar for navigation
     options = ["Meet the Team", "All About the App", "EDA", "Model Selection", "Prediction", "Information", "Conclusion"]
     selection = st.sidebar.selectbox("Choose Option", options)
-   
 
-    # "Information" page
     if selection == "Information":
         st.info("General Information")
         st.markdown("Some information here")
 
-    # "Prediction" page
     elif selection == "Prediction":
         st.info("Prediction with ML Models")
         news_text = st.text_area("Enter Text", "Type Here")
 
         if st.button("Classify"):
             vect_text = news_vectorizer.transform([news_text]).toarray()
-            model_path = r"C:\Users\thabi\Downloads\streamlit\EG7_Streamlit_Repo\models\Logistic_regression.pkl"
-            with open(model_path, "rb") as model_file:
-                predictor = joblib.load(model_file)
-            prediction = predictor.predict(vect_text)
-            st.success(f"Text Categorized as: {prediction[0]}")
+            predictor = load_model(model_path)
+            if predictor:
+                prediction = predictor.predict(vect_text)
+                st.success(f"Text Categorized as: {prediction[0]}")
 
-    # "Meet the Team" page
     elif selection == "Meet the Team":
         st.markdown("""
             <style>
@@ -137,7 +163,6 @@ def main():
             st.markdown(f'<p style="font-size:1.1em;font-style:italic;">{member["role"]}</p>', unsafe_allow_html=True)
             st.markdown('<hr>', unsafe_allow_html=True)
 
-    # "All About the App" page
     elif selection == "All About the App":
         st.markdown("""
              <style>
@@ -200,8 +225,6 @@ def main():
             <div class="sub-header">We hope you enjoy using the News Classifier App!</div>
         """, unsafe_allow_html=True)
 
-
-    # Placeholder for other sections
     elif selection == "EDA":
         st.info("Exploratory Data Analysis")
 
@@ -211,6 +234,7 @@ def main():
     elif selection == "Conclusion":
         st.info("Conclusion")
 
-# Required to let Streamlit instantiate the app
 if __name__ == '__main__':
     main()
+
+

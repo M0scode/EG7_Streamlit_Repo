@@ -25,17 +25,11 @@ import streamlit as st
 import joblib
 import os
 import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
 
-# Load your vectorizer from the pkl file
-#vectorizer_path = r"C:\Users\thabi\Downloads\streamlit\EG7_Streamlit_Repo\models\tfidfvect.pkl"
-#data_path = r"C:\Users\thabi\Downloads\streamlit\EG7_Streamlit_Repo\train.csv"
-model_path = r"C:\Users\thabi\Downloads\streamlit\EG7_Streamlit_Repo\models\Logistic_regression.pkl"
-
-model_options = {
-    "Random Forest": os.path.join(os.path.dirname(__file__), 'models', 'forest_model.pkl'),
-    "Logistic Regression": os.path.join(os.path.dirname(__file__), 'models', 'logistic_regression.pkl'),
-    "Tfidfvect": os.path.join(os.path.dirname(__file__), 'models', 'tfidfvect.pkl')
-}
+# Define the paths
+vectorizer_path = os.path.join(os.path.dirname(__file__), 'models', 'tfidfvect.pkl')
+model_path = os.path.join(os.path.dirname(__file__), 'models', 'logistic_regression.pkl')
 
 # Function to load the vectorizer
 def load_vectorizer(path):
@@ -63,14 +57,13 @@ def load_model(path):
         st.error(f"Model file not found at {path}. Please check the path.")
         return None
 
-#news_vectorizer = load_vectorizer(vectorizer_path)
-#raw_data = load_data(data_path)
-
 def main():
     """News Classifier App with Streamlit"""
 
-    #if news_vectorizer is None or raw_data is None:
-        #return
+    # Load the vectorizer
+    news_vectorizer = load_vectorizer(vectorizer_path)
+    if news_vectorizer is None:
+        return
 
     st.markdown("""
         <style>
@@ -236,5 +229,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 

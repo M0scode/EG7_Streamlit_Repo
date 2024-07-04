@@ -31,6 +31,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 vectorizer_path = os.path.join(os.path.dirname(__file__), 'models', 'tfidfvect.pkl')
 model_path = os.path.join(os.path.dirname(__file__), 'models', 'logistic_regression.pkl')
 
+# Define class labels mapping
+class_labels = {0: 'Business', 1: 'Technology', 2: 'Sports', 3: 'Entertainment', 4: 'Education'}
+
 # Function to load the vectorizer
 def load_vectorizer(path):
     try:
@@ -38,14 +41,6 @@ def load_vectorizer(path):
             return joblib.load(vec_file)
     except FileNotFoundError:
         st.error(f"Vectorizer file not found at {path}. Please check the path.")
-        return None
-
-# Function to load the raw data
-def load_data(path):
-    try:
-        return pd.read_csv(path)
-    except FileNotFoundError:
-        st.error(f"Data file not found at {path}. Please check the path.")
         return None
 
 # Function to load the model
@@ -103,6 +98,8 @@ def main():
 
     elif selection == "Prediction":
         st.info("Prediction with ML Models")
+        st.markdown("Enter the text of the news article you want to classify in the text area below and click 'Classify' to see the predicted category.")
+        
         news_text = st.text_area("Enter Text", "Type Here")
 
         if st.button("Classify"):
@@ -110,7 +107,8 @@ def main():
             predictor = load_model(model_path)
             if predictor:
                 prediction = predictor.predict(vect_text)
-                st.success(f"Text Categorized as: {prediction[0]}")
+                predicted_class = class_labels.get(prediction[0], "Unknown")
+                st.success(f"Text Categorized as: {predicted_class}")
 
     elif selection == "Meet the Team":
         st.markdown("""
@@ -229,6 +227,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-

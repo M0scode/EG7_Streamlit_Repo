@@ -25,11 +25,18 @@ import streamlit as st
 import joblib
 import os
 import pandas as pd
+import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Define the paths
 vectorizer_path = os.path.join(os.path.dirname(__file__), 'models', 'tfidfvect.pkl')
 model_path = os.path.join(os.path.dirname(__file__), 'models', 'logistic_regression.pkl')
+knn_path = os.path.join(os.path.dirname(__file__), 'models', 'best_model_knn.pkl')
+logreg_path = os.path.join(os.path.dirname(__file__), 'models', 'best_model_logreg.pkl')
+svc_path = os.path.join(os.path.dirname(__file__), 'models', 'best_model_svc.pkl')
+tree_path = os.path.join(os.path.dirname(__file__), 'models', 'best_model_tree.pkl')
+
+ 
 
 # Define class labels mapping
 class_labels = {0: 'Business', 1: 'Technology', 2: 'Sports', 3: 'Entertainment', 4: 'Education'}
@@ -89,7 +96,7 @@ def main():
         </div>
     """, unsafe_allow_html=True)
 
-    options = ["Meet the Team", "All About the App", "EDA", "Model Selection", "Prediction", "Information", "Conclusion"]
+    options = ["Meet the Team", "All About the App", "EDA", "Model Selection", "Prediction", "Information"]
     selection = st.sidebar.selectbox("Choose Option", options)
 
     if selection == "Information":
@@ -219,11 +226,11 @@ def main():
     elif selection == "EDA":
         st.info("Exploratory Data Analysis")
 
-    elif selection == "Model Selection":
-        st.info("Model Selection")
+    #elif selection == "Model Selection":
+        #st.info("Model Selection")
 
-    elif selection == "Conclusion":
-        st.info("Conclusion")
+    #elif selection == "Conclusion":
+        #st.info("Conclusion")
 
 if __name__ == '__main__':
     main()
